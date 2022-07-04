@@ -1,0 +1,187 @@
+_______________________________GENERAL_______________________________________
+
+-----------------------------------Logout-----------------------------------
+Quand je clique sur déconnection je suis ramener sur la page de départ ou je peut 
+me login.
+Je vais devoir gérer tous les états de connection en mémoire et remettre tout à zéro
+pour ne pas avoir de conflis de données si un autre utilisateur se connecte
+-----------------------------------Unauth-----------------------------------
+Quand j'arrive sur le site,
+J'affiche le composant <UnAuthApp /> (route : '/'),
+-----------------------------------Dark mode-----------------------------------
+C'est juste un switch qui est dans mon compte 
+-----------------------------------Apparence-----------------------------------
+Je vais changer le design en mettant la nav bar en haut 
+-----------------------------------Routes-----------------------------------
+J'ai trouver comment faire sur YT des routes private via un role mais la manière de
+faire n'est pas du tout opti. Donc je vais recommencé un projet en faisant à la 
+manière de Mike. J'aurais <UnAuthApp /> ( qui est le login ), <MoniteurAuthApp />, <JspAuthApp />,
+<ResponsableAuthApp />, qui seront affiché et les route seront gérer dans chacun
+de ces composants pour ne pas réactualiser toute l'app à chaque clique.
+Pour les rôles je vais devoir faire un context.
+_______________________________RESPONSABLE_______________________________________
+-----------------------------------Home-----------------------------------
+Quand je clique et me connecte à responsable, 
+J'affiche le composant <ResponsableApp /> (route : '/responsable'),
+Ce composant affiche le tableau de bord par défaut.
+Quand j'arrive dans le home je vois le dernier message que j'ai envoyer (c'est pareil que
+jsp et moniteur juste le titre change)
+Je vois un racourcis vers la liste de évènement a venir qui auras 
+exactement le même comportement que le planning.
+-----------------------------------Planning-----------------------------------
+Quand je clique sur planing je vois comme sur le home, des cards des cours
+et autres évènement à venir.
+J'affiche le composant <Planning> (route : '/responsable/planning'),
+Quand je clique sur un cours / évènement je tombe sur une vue détaillée,
+J'affiche le composant <PlanningEvent /> (route : '/moniteur/planning/event:id')
+Il dois y avoir des options pour : 
+- mettre ses disponibilitées (type : disponible, si besoin , indisponible)
+- faire l'appel
+Quand je clique sur 'Mes disponibilitées', il y a un menu déroulant qui s'ouvre
+avec les type de disponibilitées.
+Quand je clique sur 'Faire l'appel' j'affiche le composant
+<Appel /> (route : '/responsable/appel').
+A l'écran on vois la liste des jsp de la caserne trier par années, ou ordre alphabétique
+Je peut les mettre present ou absent avec 2 bouton et en bas de page j'ai un 
+bouton de validation (submit) qui va envoyer les données.
+Et aussi un bouton modifier l'appel !!! qui est disable après un délais
+---------------------------------Docuthèque-------------------------------------
+Quand je clique sur docuthèque je vois tous les documents et url mis
+à disposition par les moniteurs et moi. 
+J'affiche le composant <Docutheque /> (route : '/responsable/docutheque'),
+Ce composant affiche par défaut de facon aléatoire tous les documents
+qui sont dans la base de donnée. Et en haut il y a une barre de recherche 
+avec un filtre pour trier par année, catégorie et par type de cours.
+Il faut une option pour ajouté des documents à côté de la bare de recherche
+Quand je clique sur 'Ajouter un documents' une modal s'ouvre et demande
+le type de document (fichier, url, image, vidéo) ensuite le titre,
+la catégorie (inc, div, ps...) et l'année cible et finalement un bouton
+qui ouvre les dossier de l'appareil pour choisir le document ou
+un champs de saisis dans le cas d'url.
+Les documents avec un tag 'moniteur' seront visible.
+-----------------------------------Administratif-----------------------------------
+Quand je clique sur administratif je vois en haut une nav bar avec 2 choix
+soit 'Jsp' soit 'Encadrement'. Je vois 'Jsp' par défaut.
+J'affiche le composant <Administratif /> (route : '/responsable/administratif')
+Quand je clique sur 'Encadrement' je vois toute la liste de l'encadrement
+(trié soit par role, grade ou ordre alphabétique).
+Quand je clique sur 'Jsp' je vois toute la liste des jsp (trié
+par année ou ordre alphabétique) (c'est la même liste que pour l'appel mais
+avec des option différentes).
+Quand je clique sur un profils de jsp, je vois toutes les infos utiles le concernant
+et en dessous il y a plusieurs boutons : 
+- Discipline (sorte d'archive de tous les punition, bon comportement ect..)
+- note (ou je peut choisir un titre de contrôle, la date et observation particuliaire)
+-------------------------------------Gestion de la Section---------------------------------
+Quand je clique sur Gestion de la Section je vois une nav bar en haut avec plusieurs choix.
+(un peu dans le même style que LingQ)
+J'affiche le composant <GestionSection /> (route : '/responsable/gestion-section')
+Les différents boutons de la nav bar sont :
+- Profils Jsp : Je vois un profil de Jsp vierge que je peut remplir 
+(photo, nom, parent, info) et un bouton en bas pour créer le profil rempli,
+Il y a aussi en dessous la liste des Jsp et quand je clique sur un profil je peut éditer
+- Profils Moniteurs : Je vois un profil de moniteur vierge que je peut remplir 
+et un bouton en bas pour créer le profil rempli,
+Il y a aussi en dessous la liste des moniteur et quand je clique sur un profil je peut éditer
+- Gestion du planning (afficher par défaut) : Je vois un calendrier ou je peut
+créer des évènements, c'est les évènement qu'on véra sous forme de cards partout
+------------------------------------Compte----------------------------------
+Quand je clique sur Mon compte je vois mon profil et en dessous un bouton 
+qui permet l'édition du profil.
+J'affiche le composant <Account /> (route : '/responsable/account'),
+
+__________________________________MONITEUR____________________________________
+-------------------------------------Home---------------------------------
+Quand je clique et me connecte à moniteur, 
+J'affiche le composant <MoniteurApp /> (route : '/moniteur'),
+Ce composant affiche le tableau de bord par défaut.
+Quand j'arrive dans le home je vois le message du responsable s'il y en a un
+sinon par défaut il y auras un message comme quoi ya pas de nouveau message.
+Je vois aussi un racourcis vers la liste de évènement a venir qui auras 
+exactement le même comportement que le planning.
+--------------------------------Planning--------------------------------------
+Quand je clique sur planing je vois comme sur le home, des cards des cours
+et autres évènement à venir.
+J'affiche le composant <Planning> (route : '/moniteur/planning'),
+Quand je clique sur un cours / évènement je tombe sur une vue détaillée,
+J'affiche le composant <PlanningEvent /> (route : '/moniteur/planning/event:id')
+Il dois y avoir des options pour : 
+- mettre ses disponibilitées (type : disponible, si besoin , indisponible)
+- faire l'appel
+Quand je clique sur 'Mes disponibilitées', il y a un menu déroulant qui s'ouvre
+avec les type de disponibilitées.
+Quand je clique sur 'Faire l'appel' j'affiche le composant
+<Appel /> (route : '/moniteur/appel').
+A l'écran on vois la liste des jsp de la caserne trier par années, ou ordre alphabétique
+Je peut les mettre present ou absent avec 2 bouton et en bas de page j'ai un 
+bouton de validation (submit) qui va envoyer les données.
+Et aussi un bouton modifier l'appel !!! qui est disable après un délais
+--------------------------------Docuthèque--------------------------------------
+Quand je clique sur docuthèque je vois tous les documents et url mis
+à disposition par les autre moniteurs et le responsable. 
+J'affiche le composant <Docutheque /> (route : '/moniteur/docutheque'),
+Ce composant affiche par défaut de facon aléatoire tous les documents
+qui sont dans la base de donnée. Et en haut il y a une barre de recherche 
+avec un filtre pour trier par année, catégorie et par type de cours.
+Il faut une option pour ajouté des documents à côté de la bare de recherche
+Quand je clique sur 'Ajouter un documents' une modal s'ouvre et demande
+le type de document (fichier, url, image, vidéo) ensuite le titre,
+la catégorie (inc, div, ps...) et l'année cible et finalement un bouton
+qui ouvre les dossier de l'appareil pour choisir le document ou
+un champs de saisis dans le cas d'url.
+Les documents avec un tag 'moniteur' seront visible.
+--------------------------------Administratif--------------------------------------
+Quand je clique sur administratif je vois en haut une nav bar avec 2 choix
+soit 'Jsp' soit 'Encadrement'. Je vois 'Jsp' par défaut.
+J'affiche le composant <Administratif /> (route : '/moniteur/administratif')
+Quand je clique sur 'Encadrement' je vois toute la liste de l'encadrement
+(trié soit par role, grade ou ordre alphabétique).
+Quand je clique sur 'Jsp' je vois toute la liste des jsp (trié
+par année ou ordre alphabétique) (c'est la même liste que pour l'appel mais
+avec des option différentes).
+Quand je clique sur un profils de jsp, je vois toutes les infos utiles le concernant
+et en dessous il y a plusieurs boutons : 
+- Discipline (sorte d'archive de tous les punition, bon comportement ect..)
+- note (ou je peut choisir un titre de contrôle, la date et observation particuliaire)
+------------------------------------Compte----------------------------------
+Quand je clique sur Mon compte je vois mon profil et en dessous un bouton 
+qui permet l'édition du profil.
+J'affiche le composant <Account /> (route : '/moniteur/account'),
+___________________________________JSP___________________________________
+------------------------------------Home----------------------------------
+Quand je clique et me connecte à jsp, 
+J'affiche le composant <JspApp /> (route : '/jsp'),
+Ce composant affiche le tableau de bord par défaut.
+Quand j'arrive dans le home je vois le message du responsable s'il y en a un
+sinon par défaut il y auras un message comme quoi ya pas de nouveau message.
+Je vois aussi un racourcis vers la liste de évènement a venir qui auras 
+exactement le même comportement que le planning.
+Je vois aussi mes 3 dernière notes et la dernière note de discipline.
+-----------------------------------Administratif-----------------------------------
+Quand je clique sur administratif je vois les profils de l'encradrement,
+mais je ne vois que les coordonées, est le poste.
+J'affiche le composant <JspAdministratif /> (route : '/jsp/administratif'),
+Ce composant affiche une liste de tous les profils enregistré en tant que :
+- responsable
+- moniteur 
+- aide-moniteur
+--------------------------------Docuthèque--------------------------------------
+Quand je clique sur docuthèque je vois tous les documents et url mis
+à disposition par les moniteurs et le responsable. 
+J'affiche le composant <Docutheque /> (route : '/jsp/docutheque'),
+Ce composant affiche par défaut de facon aléatoire tous les documents
+qui sont dans la base de donnée. Et en haut il y a une barre de recherche 
+avec un filtre pour trier par année, catégorie et par type de cours.
+Les documents avec un tag 'moniteur' seront invisible.
+------------------------------------Planning----------------------------------
+Quand je clique sur planing je vois comme sur le home, des cards des cours
+et autres évènement à venir.
+J'affiche le composant <Planning> (route : '/jsp/planning'),
+Quand je clique sur un cours / évènement je tombe sur une vue détaillée,
+J'affiche le composant <PlanningEvent /> (route : '/jsp/planning/event:id')
+Il dois y avoir une option absence dans la vue détaillée, quand on clique
+dessus il y a une modal qui s'ouvre pour mettre la raison en message.
+------------------------------------Compte----------------------------------
+Quand je clique sur Mon compte je vois mon profil et en dessous un bouton 
+qui permet l'édition du profil.
+J'affiche le composant <Account /> (route : '/jsp/account'),
