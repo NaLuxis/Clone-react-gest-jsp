@@ -1,28 +1,19 @@
 import React from "react";
-import { SwitchRoleApp } from "./AppConsumer";
+import { Routes, Route } from "react-router-dom";
+import { UnAuthDisplay } from "../Pages/UnAuth/UnAuthDisplay";
+import { JspDisplay } from "../Pages/Jsp/JspDisplay";
 
 import "./App.css";
 
-function UnAuthApp() {
+function UnAuthApp(role) {
   return (
-    <div className="box">
-      <h1>Login</h1>
-      <input
-        onClick={() => <SwitchRoleApp roleApp="jsp" />}
-        type="button"
-        value="Jsp"
-      />
-      <input
-        onClick={() => <SwitchRoleApp roleApp="moniteur" />}
-        type="button"
-        value="Moniteur"
-      />
-      <input
-        onClick={() => <SwitchRoleApp roleApp="responsable" />}
-        type="button"
-        value="Responsable"
-      />
-    </div>
+    <Routes>
+      {/* public route   ici je met le composant <UnAuthDisplay/> */}
+      <Route path="/" element={<UnAuthDisplay />} />
+
+      {/* tous les autres route   ici je met le composant <UnAuthDisplay/> */}
+      <Route path="*" element={<UnAuthDisplay />} />
+    </Routes>
   );
 }
 
